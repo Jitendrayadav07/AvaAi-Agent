@@ -1,6 +1,6 @@
-<div align="center">
 
-  ##Retro9000
+
+  <p style="font-size:18px; font-weight:bold">Retro9000</p>
 
   Frontend: A React application for building a responsive and interactive user interface.
   Backend: A Node.js application with a MySQL database for handling server-side logic and API requests.
@@ -60,4 +60,4 @@
   Start the frontend, backend, and AI-agent.
   Open your browser and navigate to http://localhost:3000 to view the application.
 
-</div>
+
