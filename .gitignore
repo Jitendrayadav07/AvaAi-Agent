@@ -12,7 +12,7 @@ node_modules
 **/coverage
 
 # production
-# /build
+**/build
 
 # misc
 **/.DS_Store
@@ -26,3 +26,6 @@ node_modules
 **/yarn-error.log*
 
 #frontend files to be ignored ends
+
+#ai-agent
+**/.venv
