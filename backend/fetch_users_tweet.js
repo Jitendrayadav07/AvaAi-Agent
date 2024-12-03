@@ -74,7 +74,7 @@ async function get_user_details() {
         
         const jsonData = JSON.stringify(combine_array, null, 2);
         // change the path for local
-        fs.writeFileSync('/home/ubuntu/bounty-agent/arena_analyst/src/arena_analyst/crews/poem_crew/files/data.json', jsonData);
+        fs.writeFileSync('../ai-agent/src/arena_analyst/crews/poem_crew/files/data.json', jsonData);
         console.log('Data saved to data.json');
         
         return combine_array;
