@@ -17,7 +17,6 @@ const AVALANCHE_MAINNET_PARAMS = {
 function MetaMaskConnector({ onConnect }) {
   const [isConnected, setIsConnected] = useState(false);
   const [account, setAccount] = useState(null);
-  const [balance, setBalance] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -40,6 +39,7 @@ function MetaMaskConnector({ onConnect }) {
         );
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const checkConnection = async () => {
@@ -55,7 +55,6 @@ function MetaMaskConnector({ onConnect }) {
 
           const balance = await provider.getBalance(accountAddress);
           const formattedBalance = ethers.formatEther(balance);
-          setBalance(formattedBalance);
 
           localStorage.setItem("isWalletConnected", "true");
 
@@ -99,7 +98,6 @@ function MetaMaskConnector({ onConnect }) {
     if (accounts.length === 0) {
       setIsConnected(false);
       setAccount(null);
-      setBalance(null);
       localStorage.removeItem("isWalletConnected");
     } else {
       setAccount(accounts[0]);
