@@ -1,0 +1,22 @@
+research_task:
+  description: >
+    Conduct a thorough research about the data you have in a json format 
+    Ensure that the recommendation takes into account the following considerations:
+    1. Suggest "buy" based on the data provided.
+    2. Suggest "sell" based on the data provided.
+    3. Highlight significant changes in trading activity or external factors that may impact the decision.
+    4. Always explain the reasoning in a clear and concise manner.
+    5. Suggest a percentage of target and stop loss or the trade
+
+  expected_output: >
+    The output should be in a jon format. 
+      "recommendation": "<buy/sell>",
+      "reason": "<detailed explanation considering the key metrics>",
+      "price_trend": "<upward/downward/stable>",
+      "volatility": "<low/moderate/high>",
+      "liquidity_change": "<increasing/decreasing/stable>",
+      "recent_volume_change": "<increasing/decreasing/stable>"
+      "target": "value in percentage with reason"
+      "stop_loss": "value in percentage with reason"
+  agent: researcher
+
