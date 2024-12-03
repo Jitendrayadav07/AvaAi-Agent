@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import MetaMaskConnector from "../MetaMaskConnector";
 import { ethers } from "ethers";
 
 export function checkSwapIntent(text) {
@@ -9,7 +8,9 @@ export function checkSwapIntent(text) {
 
 const AvaAi = ({ connectedAccount, accountBalance }) => {
   const [userPrompt, setUserPrompt] = useState("");
+  // eslint-disable-next-line
   const [response, setResponse] = useState("");
+  // eslint-disable-next-line
   const [confirmVisible, setConfirmVisible] = useState(false);
   const [transactionData, setTransactionData] = useState(null);
   const [isSwapIntent, setIsSwapIntent] = useState("");
@@ -17,7 +18,7 @@ const AvaAi = ({ connectedAccount, accountBalance }) => {
   const [confirmationStates, setConfirmationStates] = useState(() =>
     Array(messages.length).fill(false)
   );
-  console.log({ confirmationStates });
+
   const handleConfirmTransaction = async (index) => {
     if (!window.ethereum || !transactionData) {
       alert("MetaMask is not connected or transaction data is missing.");
@@ -28,7 +29,7 @@ const AvaAi = ({ connectedAccount, accountBalance }) => {
       if (checkSwapIntent(isSwapIntent)) {
         const provider = new ethers.BrowserProvider(window.ethereum);
         const signer = await provider.getSigner();
-
+        // eslint-disable-next-line
         const { to, value, gasLimit, data } =
           transactionData[0]?.data?.steps[0];
         const gasEstimate = await provider.estimateGas({
@@ -66,56 +67,6 @@ const AvaAi = ({ connectedAccount, accountBalance }) => {
         setResponse("Transaction confirmed and sent.");
         setConfirmationStates((prevStates) => [...prevStates, true]);
       }
-
-      // const handlePromptSubmit = async () => {
-      //   if (userPrompt.trim()) {
-      //     const newMessage = { text: userPrompt, sender: "user" };
-      //     setMessages((prevMessages) => [...prevMessages, newMessage]);
-
-      //     try {
-      //       const apiUrl =
-      //         "https://api.brianknows.org/api/v0/agent/transaction";
-      //       const requestBody = {
-      //         prompt: userPrompt,
-      //         address: connectedAccount,
-      //         chainId: "43114",
-      //       };
-
-      //       const apiResponse = await fetch(apiUrl, {
-      //         method: "POST",
-      //         headers: {
-      //           "Content-Type": "application/json",
-      //           "x-brian-api-key": "brian_plg27CNrEWyVMGuV6",
-      //         },
-      //         body: JSON.stringify(requestBody),
-      //       });
-
-      //       const responseData = await apiResponse.json();
-      //       if (apiResponse.ok && responseData.result) {
-      //         setTransactionData(responseData.result);
-      //       }
-
-      //       const responseMessage = {
-      //         text:
-      //           responseData.result[0]?.data.description ||
-      //           "Unexpected response format or error.",
-      //         sender: "system",
-      //       };
-
-      //       setMessages((prevMessages) => [...prevMessages, responseMessage]);
-
-      //       setConfirmationStates((prevStates) => [...prevStates, false]);
-      //     } catch (error) {
-      //       console.error("API call error:", error);
-      //       setMessages((prevMessages) => [
-      //         ...prevMessages,
-      //         { text: "Failed to fetch response.", sender: "system" },
-      //       ]);
-      //     }
-      //     setIsSwapIntent(userPrompt);
-      //     setUserPrompt("");
-      //   }
-      // };
     } catch (error) {
       console.error("Transaction error:", error);
       alert("Failed to send the transaction. Please try again.");

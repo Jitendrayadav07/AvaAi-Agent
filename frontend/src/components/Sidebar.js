@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiSwordLine } from "react-icons/ri";
 import { BiStore } from "react-icons/bi";
-import { MdContactSupport } from "react-icons/md";
 
 const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("avaai");

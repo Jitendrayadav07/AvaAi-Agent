@@ -75,8 +75,6 @@ const Market = () => {
       await axios
         .get("https://pharmaalabs.com/v2/get-all-orders")
         .then((response) => {
-          console.log({ response });
-          console.log("response");
           setTransactionData(response.data);
         });
     } catch (error) {
@@ -226,7 +224,7 @@ const Market = () => {
               </form>
             </div>
           </div>
-          {transactionData.length > 0 && (
+          {transactionData.length > 0 ? (
             <div>
               <h1 className="text-xl p-3 font-bold text-white my-4">
                 Transaction History
@@ -279,6 +277,10 @@ const Market = () => {
                   </tbody>
                 </table>
               </div>
+            </div>
+          ) : (
+            <div className="text-white text-center py-4 my-20">
+              <span className="text-2xl font-bold">No Transactions Yet</span>
             </div>
           )}
         </>
