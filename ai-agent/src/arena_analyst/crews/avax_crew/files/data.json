@@ -1,0 +1,358 @@
+{
+    "code": "OK",
+    "data": [
+        {
+            "id": {
+                "chain": "avalanche",
+                "exchange": "dex3efd4e",
+                "pair": "0xd446eb1660f766d533beceef890df7a69d26f7d1",
+                "token": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+                "tokenRef": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7"
+            },
+            "dextScore": {
+                "information": 91,
+                "holders": 99,
+                "pool": 99,
+                "transactions": 99,
+                "creation": 99,
+                "total": 99
+            },
+            "metrics": {
+                "liquidity": 19663110.402997702,
+                "liquidityUpdatedAt": "2024-12-02T12:34:09.795Z",
+                "reserve": 10090308.713717317,
+                "reserveRef": 202992.94554491166,
+                "txCount": 178080
+            },
+            "name": "USD Coin",
+            "nameRef": "Wrapped AVAX",
+            "symbol": "USDC",
+            "symbolRef": "WAVAX",
+            "type": "stable-native-pair",
+            "team": {
+                "wallet": "0xcb9968cb0d6612e1167e445774997c63a0792dbf"
+            },
+            "locks": {
+                "createdAt": "2023-08-23T12:28:37.450Z",
+                "unicrypt": {
+                    "locks": {},
+                    "updatedResult": true,
+                    "updatedAt": "2023-10-18T08:17:59.522Z"
+                }
+            },
+            "creationTime": "2023-04-24T11:00:01.000Z",
+            "votes": {
+                "_warning": 0,
+                "downvotes": 1,
+                "upvotes": 1
+            },
+            "periodStats": {
+                "1h": {
+                    "volume": {
+                        "total": 5520384.199492999,
+                        "buys": 1949320.455077,
+                        "sells": 3571063.744416
+                    },
+                    "swaps": {
+                        "total": 294,
+                        "buys": 103,
+                        "sells": 191
+                    },
+                    "price": {
+                        "usd": {
+                            "first": 46.4608359940282,
+                            "last": 47.13223326374656,
+                            "min": 46.10802301359747,
+                            "max": 48.21294381670281,
+                            "diff": 1.4450821974117287
+                        },
+                        "chain": {
+                            "first": 1,
+                            "last": 1,
+                            "min": 1,
+                            "max": 1,
+                            "diff": 0
+                        }
+                    },
+                    "liquidity": {
+                        "usd": {
+                            "first": 19479604.61133475,
+                            "last": 19663110.402997702,
+                            "min": 19422062.96687525,
+                            "max": 19711827.96551134,
+                            "diff": 0.9420406385259783
+                        }
+                    },
+                    "volatility": 0.28074826852680435,
+                    "makers": 103,
+                    "updatedAt": "2024-12-02T12:35:29.698Z"
+                },
+                "6h": {
+                    "volume": {
+                        "total": 52255093.035765,
+                        "buys": 25878295.888503,
+                        "sells": 26376797.147262
+                    },
+                    "swaps": {
+                        "total": 1555,
+                        "buys": 881,
+                        "sells": 674
+                    },
+                    "price": {
+                        "usd": {
+                            "first": 47.2101081756051,
+                            "last": 47.13223326374656,
+                            "min": 45.194224565225774,
+                            "max": 49.04591144841949,
+                            "diff": -0.1649538941297682
+                        },
+                        "chain": {
+                            "first": 1,
+                            "last": 1,
+                            "min": 1,
+                            "max": 1,
+                            "diff": 0
+                        }
+                    },
+                    "liquidity": {
+                        "usd": {
+                            "first": 19567359.836845335,
+                            "last": 19663110.402997702,
+                            "min": 19178113.597067017,
+                            "max": 19922631.70389729,
+                            "diff": 0.4893381986673002
+                        }
+                    },
+                    "volatility": 2.6575191800682028,
+                    "makers": 233,
+                    "updatedAt": "2024-12-02T12:34:47.526Z"
+                },
+                "5m": {
+                    "volume": {
+                        "total": 89108.377817,
+                        "buys": 29775.894664,
+                        "sells": 59332.483153
+                    },
+                    "swaps": {
+                        "total": 7,
+                        "buys": 2,
+                        "sells": 5
+                    },
+                    "price": {
+                        "usd": {
+                            "first": 40.49340965277556,
+                            "last": 40.72166966489607,
+                            "min": 40.41227231454496,
+                            "max": 40.72166966489607,
+                            "diff": 0.5636966955309531
+                        },
+                        "chain": {
+                            "first": 1,
+                            "last": 1,
+                            "min": 1,
+                            "max": 1,
+                            "diff": 0
+                        }
+                    },
+                    "liquidity": {
+                        "usd": {
+                            "first": 17630278.72985989,
+                            "last": 17673068.47507579,
+                            "min": 17629022.334454328,
+                            "max": 17673068.47507579,
+                            "diff": 0.24270600522854185
+                        }
+                    },
+                    "volatility": 0.0050420433747919305,
+                    "makers": 5,
+                    "updatedAt": "2024-11-26T09:22:47.914Z"
+                },
+                "24h": {
+                    "volume": {
+                        "total": 102598745.66685599,
+                        "buys": 49716775.544272,
+                        "sells": 52881970.122584
+                    },
+                    "swaps": {
+                        "total": 3337,
+                        "buys": 1731,
+                        "sells": 1606
+                    },
+                    "price": {
+                        "usd": {
+                            "first": 43.95012860476354,
+                            "last": 47.13223326374656,
+                            "min": 43.86195597282161,
+                            "max": 49.17404503628017,
+                            "diff": 7.240262452015052
+                        },
+                        "chain": {
+                            "first": 1,
+                            "last": 1,
+                            "min": 1,
+                            "max": 1,
+                            "diff": 0
+                        }
+                    },
+                    "liquidity": {
+                        "usd": {
+                            "first": 18757914.69855842,
+                            "last": 19663110.402997702,
+                            "min": 18757914.69855842,
+                            "max": 19922631.70389729,
+                            "diff": 4.825673423650063
+                        }
+                    },
+                    "volatility": 5.217828897060685,
+                    "makers": 451,
+                    "updatedAt": "2024-12-02T12:34:51.160Z"
+                }
+            },
+            "firstSwapTimestamp": "2024-11-07T11:52:19.000Z",
+            "token": {
+                "id": {
+                    "chain": "avalanche",
+                    "token": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7"
+                },
+                "decimals": 18,
+                "info": {
+                    "cmc": "wavax",
+                    "coingecko": "wrapped-avax",
+                    "dextools": false,
+                    "ventures": false,
+                    "description": "",
+                    "email": "",
+                    "extraInfo": "",
+                    "nftCollection": "",
+                    "blueCheckmark": null,
+                    "dextoolsUpdatedAt": null
+                },
+                "links": {
+                    "discord": "https://discord.com/invite/RwXY7P6",
+                    "github": "https://github.com/ava-labs",
+                    "reddit": "https://www.reddit.com/r/Avax/",
+                    "telegram": "https://t.me/avalancheavax",
+                    "twitter": "https://twitter.com/AvalancheAVAX",
+                    "website": "https://www.avalabs.org/",
+                    "bitbucket": "",
+                    "facebook": "",
+                    "instagram": "",
+                    "linkedin": "",
+                    "medium": "",
+                    "tiktok": "",
+                    "youtube": "",
+                    "slack": ""
+                },
+                "logo": "3/avalanche/0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7.png?1696514734",
+                "metrics": {
+                    "maxSupply": 16958399.776410967,
+                    "totalSupply": 16958382.746647846,
+                    "totalSupplyUpdatedAt": "2022-07-21T11:37:26.478Z",
+                    "holdersUpdatedAt": "2024-12-02T12:35:14.417Z",
+                    "txCount": 0,
+                    "holders": 594598,
+                    "circulatingSupply": 6093544.37268556,
+                    "mcap": 287202354.77640605,
+                    "fdv": 799286451.3909014
+                },
+                "name": "Wrapped AVAX",
+                "symbol": "WAVAX",
+                "totalSupply": "5260349088212864010291470",
+                "creationBlock": 7388840,
+                "creationTime": "2021-11-25T01:06:02.000Z",
+                "reprPair": {
+                    "id": {
+                        "chain": "avalanche",
+                        "exchange": "dex3efd4e",
+                        "pair": "0xd446eb1660f766d533beceef890df7a69d26f7d1",
+                        "token": "0xb97ef9ef8734c71904d8002f8b6bc66dd9c48a6e",
+                        "tokenRef": "0xb31f66aa3c1e785363f0875a1b74e27b85fd66c7"
+                    },
+                    "updatedAt": "2024-11-10T13:57:08.882Z"
+                },
+                "audit": {
+                    "is_contract_renounced": false,
+                    "url": ""
+                },
+                "banner": "",
+                "categories": []
+            },
+            "price": 47.13223326374656,
+            "price5m": {
+                "volume": 231807.861919,
+                "swaps": 27,
+                "price": 47.313068088262234,
+                "priceChain": 1,
+                "buys": 6,
+                "sells": 21,
+                "buysVolume": 59698.172481999994,
+                "sellsVolume": 172109.689437,
+                "minPrice": 47.12794538049587,
+                "minPriceChain": 1,
+                "maxPrice": 47.41159523280533,
+                "maxPriceChain": 1,
+                "makers": 20
+            },
+            "price1h": {
+                "volume": 5316540.618427,
+                "swaps": 270,
+                "price": 46.293621329691426,
+                "priceChain": 1,
+                "buys": 98,
+                "sells": 172,
+                "buysVolume": 1889641.768309,
+                "sellsVolume": 3426898.850118,
+                "minPrice": 46.10802301359747,
+                "minPriceChain": 1,
+                "maxPrice": 48.21294381670281,
+                "maxPriceChain": 1,
+                "makers": 95
+            },
+            "price6h": {
+                "volume": 53142460.906127,
+                "swaps": 1464,
+                "price": 47.77881884637065,
+                "priceChain": 1,
+                "buys": 914,
+                "sells": 550,
+                "buysVolume": 27575156.826185998,
+                "sellsVolume": 25567304.079940997,
+                "minPrice": 45.194224565225774,
+                "minPriceChain": 1,
+                "maxPrice": 49.04591144841949,
+                "maxPriceChain": 1,
+                "makers": 211
+            },
+            "price24h": {
+                "volume": 98932010.49978499,
+                "swaps": 3110,
+                "price": 44.12618420693424,
+                "priceChain": 1,
+                "buys": 1669,
+                "sells": 1441,
+                "buysVolume": 48876157.313499995,
+                "sellsVolume": 50055853.186285,
+                "minPrice": 43.86195597282161,
+                "minPriceChain": 1,
+                "maxPrice": 49.17404503628017,
+                "maxPriceChain": 1,
+                "makers": 427
+            },
+            "price7d": {
+                "volume": 307845068.987849,
+                "swaps": 13866,
+                "price": 44.73054337687631,
+                "priceChain": 1,
+                "buys": 7585,
+                "sells": 6281,
+                "buysVolume": 153349788.76301798,
+                "sellsVolume": 154495280.22483099,
+                "minPrice": 38.51929065316978,
+                "minPriceChain": 1,
+                "maxPrice": 49.17404503628017,
+                "maxPriceChain": 1,
+                "makers": 1683
+            }
+        }
+    ]
+}

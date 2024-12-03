@@ -1,0 +1,10 @@
+{
+  "sentiment": "greed",
+  "score": 75,
+  "most_talked_crypto": "$ARENA",
+  "trend": "people are buying arena",
+  "reasoning": "The consensus from both the social media sentiment and transaction data indicates a strong preference among users for purchasing $ARENA, reflecting confidence in its growth potential. The significant positive sentiment in social discussions aligns with increased buying activity in exchange operations, reinforcing the notion of a bullish outlook on the token.",
+  "changes": "No changes were necessary to the data provided; both analyses aligned cohesively in their findings.",
+  "arena_social_analyst_reasoning": "The overwhelming majority of tweets express positivity and a hopeful outlook on the $ARENA cryptocurrency, while $AVAX experiences mixed sentiments. The community's engagement reflects confidence in the future, propelling a sentiment score aligned with a greedy stance.",
+  "arena_volume_analyst_reasoning": "The majority of transactions show a higher inclination towards buying ARENA as individuals are adding liquidity and swapping into ARENA more frequently than selling. This suggests a growing confidence in the token's future."
+}

@@ -1,0 +1,75 @@
+arena_social_analyst_task:
+  description: >
+    To do a detailed analysis on the provided Json data, 
+    The data will be in array of objects.
+    The provided json includes the following fields:
+    - user_id
+    - tweet
+    - tweet_time
+    - answerCount
+    You need to generate a sentimental analysis by analysing all the tweets of all users,
+    check about the most talked cryto currency then come up with the overall sentiment, score, the most talked crypto currency and your reasoning in 2 sentences.
+    0-25 : Extreme Fear
+    26-50: Fear
+    51-75 : Greed
+    76-100 : Extreme Greed
+  expected_output: >
+    Output a json with the following fields:
+    - sentiment : Extreme Fear / Fear / Greed / Extreme Greed
+    - score : between 0 and 100
+    - most_talked_crypto : name of the most talked crypto currency
+    - reasoning : your reasoning
+  agent: arena_social_analyst
+
+
+arena_volume_analyst_task:
+  description: >
+    You would be having a prediction of the fear and greed index, you are supposed to avoid that opinion for your analysis to be accurate, 
+    The data provided to you, you are supposed to concentrate on 3 columns particularly amount, function_call and timestamp
+    function_call column consist of 6 types of values in the data,
+    - Swap AVAX For Arena : people are selling AVAX and buying ARENA indicates buy for Arena and sell for AVAX
+    - Swap ARENA For Tokens : people are selling ARENA and buying tokens indicates sell for Arena and buy for tokens
+    - Swap Tokens For ARENA : people are selling tokens and buying ARENA indicates sell for tokens and buy for Arena
+    - Swap Arena for AVAX : people are selling ARENA and buying AVAX indicates sell for Arena and buy for AVAX
+    - Add Liquidity : people are adding liquidity to the pool indicates buy for both tokens
+    - Remove Liquidity : people are removing liquidity from the pool indicates sell for both tokens
+    amount column consist of the quantity of tokens swapped, added or removed in the pool.
+    timestamp column consist of the time of the transaction.
+    You need to analyse the data 
+    - check past 24 hours data, then check the last 6 hours data,
+    - analyse what changed in the trading behaviour in past 6 hours which made you come towards your decision.
+    based on these you need to give the perfect unbiased opinion seeing the amount, function_call and timestamp,
+    and inform what is the current trend of the market that the users are following.
+  expected_output: >
+    Output a json with the following fields:
+      - trend : people are buying / selling arena,
+      - reasoning: your reasoning
+      - sentiment : given by arena_social_analyst
+      - score : given by arena_social_analyst
+      - most_talked_crypto : given by arena_social_analyst
+      - arena_social_analyst_reasoning : given by arena_social_analyst
+  agent: arena_volume_analyst
+
+
+arena_team_leader_task:
+  description: >
+    You are given the output of the arena_social_analyst and arena_volume_analyst,
+    arena_social_analyst has given its opinion users greed or feed index with reasoning, checking the data availble in social media,
+    arena_volume_analyst has given its opinion users buying or selling arena with reasoning, checking the data availble in crypto exchange,
+    You need to compare both of the data and and come up with the perfect unbiased opinion seeing the prediction of the team.
+    You need to give the complete information to your manager, what your team has worked and your analysis.
+  expected_output: >
+    Output a json with the following fields:
+    - sentiment : Extreme Fear / Fear / Greed / Extreme Greed
+    - score : between 0 and 100
+    - most_talked_crypto : name of the most talked crypto currency
+    - trend : people are buying / selling arena,
+    - reasoning : your reasoning
+    - changes : the changes you made to the data provided by your team and why in 1 sentence
+    - arena_social_analyst_reasoning : given by arena_social_analyst
+    - arena_volume_analyst_reasoning : given by arena_volume_analyst
+  agent: arena_team_leader
+
+
+
+
