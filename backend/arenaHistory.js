@@ -117,8 +117,8 @@ async function getArenaTransactionHistory(startBlock, endBlock) {
 
                     // Insert new transaction
                     const insertQuery = `INSERT INTO tbl_arena_transactions 
-                        (transaction_hash, from_address, to_address, amount, dex, function_called, block_number, timestamp ,epoch_time) 
-                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+                    (transaction_hash, from_address, to_address, amount, dex, function_called, block_number, timestamp ,epoch_time) 
+                       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
                     const insertValues = [
                         event.transactionHash,                                                  
                         from,

@@ -1,37 +1,16 @@
-const { body,param } = require('express-validator');
+const Joi = require('joi') 
 
-const placeOrderValidation = [
-    body('order_type')
-        .trim()
-        .notEmpty()
-        .withMessage('Order type is required')
-        .isIn(['buy', 'sell'])
-        .withMessage('Order type must be "buy" or "sell"')
-        .toLowerCase(),
-    
-    body('size')
-        .notEmpty()
-        .withMessage('Size is required')
-        .isNumeric()
-        .withMessage('Size must be a number')
-        .custom(value => {
-            if (value <= 0) {
-                throw new Error('Size must be greater than 0');
-            }
-            return true;
-        })
-];
+const EnclaveMarketsSchema = { 
 
-const getOrderByIdValidation = [
-    param('orderId')
-        .notEmpty()
-        .withMessage('Order ID is required')
-        .isString()
-        .withMessage('Order ID must be a string'),
-];
+    placeOrderValidation : Joi.object({
+        order_type: Joi.string().required(),
+        size: Joi.number().required(),
+    }),
 
+    getOrderByIdValidation : Joi.object({
+        orderId: Joi.string().required(),
+    }),
 
-module.exports = {
-    placeOrderValidation,
-    getOrderByIdValidation
-};
+}; 
+
+module.exports = EnclaveMarketsSchema;

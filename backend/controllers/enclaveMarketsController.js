@@ -5,7 +5,8 @@ const { format } = require('date-fns');
 require('dotenv').config();
 const { validationResult } = require('express-validator'); // For input validation
 const winston = require('winston'); // For structured logging
-
+const Response = require("../classes/Response");
+const ENCL_MARKETS_CONSTANTS = require("../constants/enclaveMarketsConstant");
 // Logger setup using Winston
 const logger = winston.createLogger({
     level: 'info',
@@ -158,10 +159,11 @@ const placeOrder = async (req, res) => {
         ]);
 
         logger.info('Data inserted successfully, ID:', result.insertId);
-        res.status(201).send(orderResponse);
+        return res.status(201).json(Response.sendResponse(true, orderResponse, ENCL_MARKETS_CONSTANTS.ORDER_PLACED_SUCCESSFULLY, 201));
     } catch (error) {
+        console.log(error);
         logger.error('Error placing order:', error.message);
-        res.status(500).send({ error: error.message });
+        res.status(500).json(Response.sendResponse(false, null, ENCL_MARKETS_CONSTANTS.FAILED_TO_PLACE_ORDER, 500));
     }
 };
 
@@ -171,10 +173,10 @@ const getAllOrders = async (req, res) => {
         const [results] = await db.query(query);
 
         logger.info('Orders fetched successfully:', results);
-        res.status(200).send(results);
+        return res.status(200).send(Response.sendResponse(true, results, ENCL_MARKETS_CONSTANTS.ORDERS_FETCHED_SUCCESSFULLY, 200));
     } catch (error) {
         logger.error('Error fetching orders from the database:', error.message);
-        res.status(500).send({ error: 'Failed to fetch orders from database' });
+        res.status(500).send(Response.sendResponse(false, null, ENCL_MARKETS_CONSTANTS.FAILED_TO_FETCH_ORDERS, 500));
     }
 }
 
@@ -188,10 +190,10 @@ const getOrderById = async (req, res) => {
         logger.info('Orders fetched successfully:', ordersResponse);
 
         // Send the fetched orders as a response
-        res.status(200).send(ordersResponse);
+        return res.status(200).send(Response.sendResponse(true, ordersResponse, ENCL_MARKETS_CONSTANTS.ORDERS_FETCHED_SUCCESSFULLY, 200));
     } catch (error) {
         logger.error('Error fetching orders:', error.message);
-        res.status(500).send({ error: error.message });
+        res.status(500).send(Response.sendResponse(false, null, ENCL_MARKETS_CONSTANTS.FAILED_TO_FETCH_ORDERS, 500));
     }
 }
 
