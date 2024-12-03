@@ -61,3 +61,10 @@
   Open your browser and navigate to http://localhost:3000 to view the application.
 
 
+  Our Basic Architecture
+
+  ![Architect of our app](./basic-arc.jpg)
+
+
+
+
