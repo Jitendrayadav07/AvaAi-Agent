@@ -48,20 +48,21 @@ async function uprising_users() {
             // Prepare the insert query and use placeholders to prevent SQL injection and character issues
             let query = `INSERT INTO tbl_uprising_users (user_uuid, user_rank, twitter_handle, user_name, user_picture, points) VALUES (?, ?, ?, ?, ?, ?)`;
 
+            let {id, position, twitterHandle, userName, userPicture, points } = data[i];
             let values = [
-                data[i].id,
-                data[i].position,
-                data[i].twitterHandle,
-                data[i].userName,
-                data[i].userPicture,
-                data[i].points
+                id,
+                position,
+                twitterHandle,
+                userName,
+                userPicture,
+                points
             ];
 
             let user_details = await getmysqlquery(query, values);
 
-            if (user_details === false) {
-                console.log("Insertion failed for rank:", data[i].position);
-                false_ranks.push(data[i].position);
+            if (!user_details) {
+                console.log("Insertion failed for rank:", position);
+                false_ranks.push(position);
             }
         }
 

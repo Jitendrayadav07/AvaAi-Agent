@@ -10,9 +10,6 @@ router.post("/place-order",
 router.get("/get-all-orders", 
     enclaveMarkertController.getAllOrders);
 
-router.get("/get-stats", 
-    enclaveMarkertController.getStats);
-
 router.get("/get-orders/:orderId", 
     getOrderByIdValidation,
     enclaveMarkertController.getOrderById);

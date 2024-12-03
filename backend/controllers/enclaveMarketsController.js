@@ -1,13 +1,10 @@
-const express = require('express');
 const crypto = require('crypto');
 const https = require('https');
 const mysql = require('mysql2/promise'); // Using promise-based MySQL
 const { format } = require('date-fns');
 require('dotenv').config();
-const { body, validationResult } = require('express-validator'); // For input validation
+const { validationResult } = require('express-validator'); // For input validation
 const winston = require('winston'); // For structured logging
-const axios = require('axios');
-
 
 // Logger setup using Winston
 const logger = winston.createLogger({
@@ -124,26 +121,6 @@ async function getOrders(orderId) {
     }
 }
 
-async function fetchDextoolsData() {
-    const url = 'https://www.dextools.io/shared/data/pair?address=0xd446eb1660f766d533beceef890df7a69d26f7d1&chain=avalanche&audit=false&locks=true';
-
-    const headers = {
-        'accept': 'application/json',
-        'accept-encoding': 'gzip, deflate, br',
-        'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
-        'content-type': 'application/json',
-        'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36',
-        'cookie': '__cf_bm=G..3lsPrCe8ZYGMA.pkbSOS2zfBPCNvaRjukUITJ0.Q-1733046992-1.0.1.1-8BGqubhOZ5ANZl7uJcByY5ejpf9Lg9fYp7BchJE8nLLM6JnmYbqDYgGhnQX0iNChOJVWT1ekma9k7HmnaDYpgA; _pk_id.1.b299=eb998a4c1875aba9.1733047005.; _pk_ses.1.b299=1; _pk_id.5.b299=01c3b9b4963e4b9d.1733047005.; _pk_ses.5.b299=1; cookieyes-consent=consentid:UlBWMnZmQmVaSkxhcVkxQ3FjcFBZYXRiODVMWVpIdkY,consent:yes,action:no,necessary:yes,functional:yes,analytics:yes,performance:yes,advertisement:yes,other:yes; cf_clearance=Ltyksozm3aJMDg4GhzP31myWXGUvEHSZIoCNaRWo62w-1733047019-1.2.1.1-GeDNigDfIkAwggiN7UqmPrVyxVtKcIm8_uxZhfojCdV8OMToIkY7nniuOytrwt_lP4oHHQV_9hmmaDtEf5EVSrgIsljzku2AUxFz0fflFDdPvPqc5X_xkVve7dm.hmuRzqA2oNhsHm9c9UxzEZ7qxjtFCaWlyH9hycvndp33Pl5xZ3eor0ZWxAMMDo_O3bs2ri1eKIcTXJnYR2QuIw4Hh9Tpkix1hLHU0JZLgi7tpGqGSojX4zk88aT4zx2HzxFpUgmHMaP9TEXaxYVMp0.QfiUoXdQqa0modYRR.zO8cp9C99ZMqH.BRY4XDQ.v7NRp1dX6rDCKYBh4XWM72shldiV5wyl5T4n2UzwBuqL5i02pxDgY312qGnZAWihHQ2wb9jT3GNmTm5cFSd5oZl1TTIElFWVUW._Srjw4CZU.qXy2fBMq0n7nWi3zAPddQvSW', // Add your cookie value
-    };
-
-    try {
-        const response = await axios.get(url, { headers });
-
-        return response.data
-    } catch (error) {
-        console.error('Error fetching data:', error.response?.status, error.response?.data || error.message);
-    }
-}
 
 const placeOrder = async (req, res) => {
     try {
@@ -201,16 +178,6 @@ const getAllOrders = async (req, res) => {
     }
 }
 
-const getStats = async (req, res) => {
-      try {
-        let avalanche_stats = await fetchDextoolsData()
-        res.status(200).send(avalanche_stats);
-    } catch (error) {
-        logger.error('Error fetching orders:', error.message);
-        res.status(500).send({ error: error.message });
-    }
-}
-
 const getOrderById = async (req, res) => {
      try {
         const orderId = req.params.orderId;
@@ -231,7 +198,6 @@ const getOrderById = async (req, res) => {
 module.exports = {
     placeOrder,
     getAllOrders,
-    getStats,
     getOrderById
 };
 

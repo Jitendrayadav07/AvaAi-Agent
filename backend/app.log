@@ -40,3 +40,11 @@
 {"level":"error","message":"Error closing database connection:"}
 {"level":"info","message":"Server is running at http://localhost:3003"}
 {"level":"error","message":"Error closing database connection:"}
+{"level":"info","message":"Server is running at http://localhost:3003"}
+{"level":"error","message":"Error closing database connection:"}
+{"level":"info","message":"Server is running at http://localhost:3003"}
+{"level":"error","message":"Error fetching orders from the database:"}
+{"level":"info","message":"Server is running at http://localhost:3003"}
+{"level":"info","message":"Server is running at http://localhost:3003"}
+{"level":"info","message":"Server is running at http://localhost:3003"}
+{"level":"error","message":"Error closing database connection:"}

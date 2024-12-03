@@ -1,12 +1,6 @@
 const express = require('express');
-const crypto = require('crypto');
-const https = require('https');
-const mysql = require('mysql2/promise'); // Using promise-based MySQL
-const { format } = require('date-fns');
-require('dotenv').config();
-const { body, validationResult } = require('express-validator'); // For input validation
+require('dotenv').config(); // For input validation
 const winston = require('winston'); // For structured logging
-const axios = require('axios');
 const routes = require("./routes");
 
 const app = express();

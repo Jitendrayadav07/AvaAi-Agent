@@ -1,7 +1,6 @@
 require('dotenv').config();
 const { ethers } = require('ethers');
 
-const axios = require('axios');
 const DataSource = require('loopback-datasource-juggler').DataSource;
 let bluebird = require('bluebird');
 
@@ -32,7 +31,7 @@ let getmysqlquery = async function (query, values) {
 // Connect to the Avalanche C-Chain
 const provider = new ethers.providers.JsonRpcProvider(process.env.AVAX_RPC_URL);
 
-// ARENA token details
+// Reuse the same constants from arenaMonitor.js
 const ARENA_ADDRESS = '0xb8d7710f7d8349a506b75dd184f05777c82dad0c';
 const ARENA_ABI = [
     'event Transfer(address indexed from, address indexed to, uint256 value)',
@@ -40,7 +39,6 @@ const ARENA_ABI = [
     'function symbol() view returns (string)'
 ];
 
-// Update KNOWN_ADDRESSES with interface and specific functions
 const TRADER_JOE_ABI = [
     'function addLiquidityNATIVE(tuple(address tokenX, address tokenY, uint256 binStep, uint256 amountX, uint256 amountY, uint256 amountXMin, uint256 amountYMin, uint256 activeIdDesired, uint256 idSlippage, int256[] deltaIds, uint256[] distributionX, uint256[] distributionY, address to, address refundTo, uint256 deadline) liquidityParameters) payable returns (uint256 amountXAdded, uint256 amountYAdded, uint256 amountXLeft, uint256 amountYLeft, uint256[] depositIds, uint256[] liquidityMinted)',
     'function removeLiquidityNATIVE(address token, uint16 binStep, uint256 amountTokenMin, uint256 amountNATIVEMin, uint256[] ids, uint256[] amounts, address payable to, uint256 deadline) returns (uint256 amountToken, uint256 amountNATIVE)',
@@ -63,26 +61,32 @@ const KNOWN_ADDRESSES = {
     }
 };
 
-async function monitorArenaTransactions() {
-    console.log('Starting ARENA token monitoring...');
+async function getArenaTransactionHistory(startBlock, endBlock) {
+    console.log('Fetching ARENA transaction history...');
     
     const arenaContract = new ethers.Contract(ARENA_ADDRESS, ARENA_ABI, provider);
     
-    // Get token details once
+    // Get token details
     const [decimals, symbol] = await Promise.all([
         arenaContract.decimals(),
         arenaContract.symbol()
     ]);
 
-    // Listen for all Transfer events
-    arenaContract.on('Transfer', async (from, to, value, event) => {
+    // Create filter for Transfer events
+    const filter = arenaContract.filters.Transfer();
+    
+    // Get all transfer events between blocks
+    const events = await arenaContract.queryFilter(filter, startBlock, endBlock);
+    
+    // Process each event
+    for (const event of events) {
         try {
+            const { from, to, value } = event.args;
             const formattedAmount = ethers.utils.formatUnits(value, decimals);
             const tx = await provider.getTransaction(event.transactionHash);
             
             const dexInfo = KNOWN_ADDRESSES[tx.to];
             if (dexInfo) {
-                // Create contract interface
                 const iface = new ethers.utils.Interface(dexInfo.abi);
                 
                 let functionName = 'Unknown';
@@ -94,24 +98,13 @@ async function monitorArenaTransactions() {
                         const tokenPath = decodedData.args.path.tokenPath;
                         if (tokenPath[0].toLowerCase() === ARENA_ADDRESS.toLowerCase()) {
                             functionName = 'Swap ARENA For Tokens';
-                            
                         } else if (tokenPath[tokenPath.length - 1].toLowerCase() === ARENA_ADDRESS.toLowerCase()) {
                             functionName = 'Swap Tokens For ARENA';
-                            
                         }
                     }
 
                     const block = await event.getBlock();
-
-                    // console.log(`\n--- New ARENA Transfer Detected ---`);
-                    // console.log(`Transaction Hash: ${event.transactionHash}`);
-                    // console.log(`From: ${from}`);
-                    // console.log(`To: ${to}`);
-                    // console.log(`Amount: ${formattedAmount} ${symbol}`);
-                    // console.log(`DEX: ${dexInfo.name}`);
-                    // console.log(`Function Called: ${functionName}`);
-                    // console.log(`Block Number: ${event.blockNumber}`);
-                    console.log(`Timestamp: ${new Date(block.timestamp * 1000).toISOString()}`);
+                    
                     const epochTime = Math.floor(new Date(block.timestamp * 1000).getTime() / 1000);
                     const arean_data = `SELECT transaction_hash FROM tbl_arena_transactions WHERE transaction_hash = ?`;
                     const transaction_hash_data = [event.transactionHash];
@@ -119,15 +112,15 @@ async function monitorArenaTransactions() {
 
                     if (existingTransaction && existingTransaction.length > 0) {
                         console.log(`Transaction ${event.transactionHash} already exists, skipping...`);
-                        return;
+                        continue;
                     }
 
                     // Insert new transaction
                     const insertQuery = `INSERT INTO tbl_arena_transactions 
-                     (transaction_hash, from_address, to_address, amount, dex, function_called, block_number, timestamp ,epoch_time) 
-                     VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+                        (transaction_hash, from_address, to_address, amount, dex, function_called, block_number, timestamp ,epoch_time) 
+                        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
                     const insertValues = [
-                        event.transactionHash,
+                        event.transactionHash,                                                  
                         from,
                         to,
                         formattedAmount,
@@ -148,23 +141,27 @@ async function monitorArenaTransactions() {
                     console.log('Could not decode transaction data');
                 }
             }
-            
         } catch (error) {
             console.error('Error processing transfer:', error);
         }
-    });
-
-    // Error handling
-    provider.on('error', (error) => {
-        console.error('Provider error:', error);
-    });
+    }
 }
 
-// Start monitoring
-monitorArenaTransactions().catch(console.error);
+// Example usage
+const BLOCKS_PER_QUERY = 2000; // Adjust based on RPC node limits
 
-// Handle process termination
-process.on('SIGINT', async () => {
-    console.log('Shutting down...');
+async function fetchHistoryInBatches(fromBlock, toBlock) {
+    for (let start = fromBlock; start <= toBlock; start += BLOCKS_PER_QUERY) {
+        const end = Math.min(start + BLOCKS_PER_QUERY - 1, toBlock);
+        console.log(`Fetching blocks ${start} to ${end}...`);
+        await getArenaTransactionHistory(start, end);
+    }
+}
+
+// Start fetching (example: last 10000 blocks)
+provider.getBlockNumber().then(async (currentBlock) => {
+    const fromBlock = 52414724;
+    await fetchHistoryInBatches(fromBlock, currentBlock);
+    console.log('History fetch complete');
     process.exit(0);
-}); 
+}).catch(console.error); 

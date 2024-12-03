@@ -3,10 +3,11 @@ const DataSource = require('loopback-datasource-juggler').DataSource;
 let bluebird = require('bluebird');
 const fs = require('fs');
 require('dotenv').config();
-const path = require('path');
 const cron = require('node-cron');
 
 const BEARER_TOKEN = process.env.BEARER_TOKEN;
+
+const DATA_TYPE = "text";
 
 const dataSource = new DataSource({
     connector: require('loopback-connector-mysql'),
@@ -20,21 +21,18 @@ const dataSource = new DataSource({
 });
 
 let getmysqlquery = async function (query, values) {
-    // console.log('Executing MySQL query:', { query, values });
     return new bluebird.Promise(function (resolve, reject) {
         dataSource.connector.query(query, values, function (err, results) {
             if (err) {
                 console.error('Database Error:', err);
                 return resolve(false);
             }
-            // console.log('Query results:', results?.length || 0, 'rows');
             resolve(results);
         });
     });
 };
 
 async function user_tweets(user_id) {
-    console.log('Fetching tweets for user:', user_id);
 
     const API_URL = `https://api.starsarena.com/threads/feed/user?userId=${user_id}&page=1&pageSize=40`;
 
@@ -45,19 +43,17 @@ async function user_tweets(user_id) {
     });
 
     let thread_data = response.data.threads;
-    // console.log('Retrieved threads:', thread_data?.length || 0);
 
     for(let j = 0; j < thread_data.length; j++) {
-        if(thread_data[j].threadType === 'text') {
-            // console.log('Found text thread:', thread_data[j].id);
+        let {id, content, createdDate, answerCount, threadType} = thread_data[j];
+        if(threadType?.toLowerCase() === DATA_TYPE.toLowerCase()) {
 
             let data_obj = {
-                user_id: thread_data[j].id,
-                tweet: thread_data[j].content,
-                tweet_time: thread_data[j].createdDate,
-                answerCount: thread_data[j].answerCount,
+                user_id: id,
+                tweet: content,
+                tweet_time: createdDate,
+                answerCount: answerCount,
             }
-            // console.log('Processed tweet data:', data_obj);
             return data_obj;
         }
     }
@@ -75,10 +71,9 @@ async function get_user_details() {
                 combine_array.push(user_tweet_data);
             }
         }
-
-        // console.log('Final processed data:', combine_array);
         
         const jsonData = JSON.stringify(combine_array, null, 2);
+        // change the path for local
         fs.writeFileSync('/home/ubuntu/bounty-agent/arena_analyst/src/arena_analyst/crews/poem_crew/files/data.json', jsonData);
         console.log('Data saved to data.json');
         
