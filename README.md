@@ -1,6 +1,6 @@
 
 
-  <p style="font-size:18px; font-weight:bold">Bounty9000</p>
+  <p style="font-size:18px; font-weight:bold">AvaAi Agent</p>
 
   Frontend: A React application for building a responsive and interactive user interface.
   Backend: A Node.js application with a MySQL database for handling server-side logic and API requests.
@@ -56,6 +56,14 @@ To obtain a Bearer Token for Arena Social, follow these steps:
 5.Securely Store the Token
   Save the token in your /backend/.env file or another secure location.
 
+  ## ** OPEN AI API key to get the bot running **
+
+1. Go to platform.openai.com
+2. API keys > Create new secret key
+3. cd ai-agent/.env - paste your api key
+
+Note - check the credits in your account if they credits are 0, will have to purchase 5$ of credits for bot to run.
+
    ## **Ensure you have the following installed:**
 
   Node.js (version >= 18)
@@ -79,9 +87,11 @@ To obtain a Bearer Token for Arena Social, follow these steps:
   3. Setup the backend:
     cd backend  
     npm install  
-    npm start
+    node index.js
 
     Runs on port 3003
+
+    Note - create a database name avax-house
 
 
   4. Setup the AI-Agent:
@@ -94,7 +104,10 @@ To obtain a Bearer Token for Arena Social, follow these steps:
 
     Runs on port 5000
 
-  Note - Make sure to keep all the projects running parallely
+  Note - 
+  1. Make sure to keep all the projects running parallely
+  2. Have a open ai key
+  3. Add the required keys in all projects .env file for the project to execute.
 
   Usage
   Start the frontend, backend, and AI-agent.
@@ -103,6 +116,11 @@ To obtain a Bearer Token for Arena Social, follow these steps:
   ## **Our Basic Architecture**
   
   ![Architect of our app](./basic-arc.jpg)
+
+  ## **Link to our Application Demo**
+
+  Phase 1 - https://x.com/mtsurve/status/1862142302946206084?s=46
+  Phase 2 - https://x.com/web3_nk/status/1864020000975335580?s=46&t=5B1cBX7nSp1488j43Mm0CQ
 
 
 

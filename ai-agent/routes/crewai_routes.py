@@ -13,7 +13,7 @@ file_path = os.path.join(os.path.dirname(__file__), '../src/arena_analyst/crews/
 crewai_routes = Blueprint('crewai_routes', __name__)
 
 STATS_API_URL = "https://www.dextools.io/shared/data/pair?address=0xd446eb1660f766d533beceef890df7a69d26f7d1&chain=avalanche&audit=false&locks=true"
-ORDER_API_URL = "https://pharmaalabs.com/v2/place-order"
+ORDER_API_URL = "http://localhost:3003/v2/place-order"
 
 @crewai_routes.route('/avax-agent', methods=['GET'])
 def agent():
@@ -69,4 +69,5 @@ def agent():
             "message": "Failed to fetch data from the external API",
             "error": str(e)
         }
+        print(response)
 
