@@ -56,7 +56,7 @@ To obtain a Bearer Token for Arena Social, follow these steps:
 5.Securely Store the Token
   Save the token in your /backend/.env file or another secure location.
 
-  Ensure you have the following installed:
+   ## **Ensure you have the following installed:**
 
   Node.js (version >= 18)
   MySQL (latest version)
@@ -100,9 +100,8 @@ To obtain a Bearer Token for Arena Social, follow these steps:
   Start the frontend, backend, and AI-agent.
   Open your browser and navigate to http://localhost:3000 to view the application.
 
-
-  Our Basic Architecture
-
+  ## **Our Basic Architecture**
+  
   ![Architect of our app](./basic-arc.jpg)
 
 
