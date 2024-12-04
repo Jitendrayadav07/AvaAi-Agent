@@ -117,6 +117,11 @@ Note - check the credits in your account if they credits are 0, will have to pur
   
   ![Architect of our app](./basic-arc.jpg)
 
+  ## **Link to our Application Demo**
+
+  Phase 1 - https://x.com/mtsurve/status/1862142302946206084?s=46
+  Phase 2 - https://x.com/web3_nk/status/1864020000975335580?s=46&t=5B1cBX7nSp1488j43Mm0CQ
+
 
 
 
