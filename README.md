@@ -10,7 +10,23 @@
 
   ├── frontend/   # React application for the user interface  
   ├── backend/    # Node.js application with MySQL database  
-  └── ai-agent/   # Python-based AI agent for advanced functionalities  
+  └── ai-agent/   # Python-based AI agent for advanced functionalities
+
+## **Generating an Enclave API Key**
+
+To generate an API Key For Enclave Market
+
+1. Sign into your account with a web browser at [`https://sandbox.enclave.market/`](https://sandbox.enclave.market/)
+2. Click on your address in the upper right corner
+3. Click "API Keys”
+4. Click Add New API Key
+5. Name the key
+6. Select the correct permissions
+7. Click "Create API Key”
+8. Record the secret key
+9. Save it in .env file
+
+*Important: The secret key should be treated the same way as a password and not stored in an unencrypted manner. Please place this information in a password manager or key vault.*
 
   Setup
 
