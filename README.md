@@ -12,7 +12,11 @@
   ├── backend/    # Node.js application with MySQL database  
   └── ai-agent/   # Python-based AI agent for advanced functionalities
 
-## **Generating an Enclave API Key**
+  Setup
+
+  Prerequisites
+
+  ## **Generating an Enclave API Key**
 
 To generate an API Key For Enclave Market
 
@@ -24,13 +28,33 @@ To generate an API Key For Enclave Market
 6. Select the correct permissions
 7. Click "Create API Key”
 8. Record the secret key
-9. Save it in .env file
+9. Save it in /backend/.env file
 
 *Important: The secret key should be treated the same way as a password and not stored in an unencrypted manner. Please place this information in a password manager or key vault.*
 
-  Setup
+## **Obtaining a Bearer Token for Arena Social**
+To obtain a Bearer Token for Arena Social, follow these steps:
 
-  Prerequisites
+1.Log into Arena Social
+  Use a web browser to sign into your account at https://arena.social/home.
+
+2.Open the Developer Tools
+
+  Right-click anywhere on the page and select "Inspect", or press Ctrl+Shift+I (Windows/Linux) or Cmd+Option+I (Mac).
+  Navigate to the "Application" tab in the Developer Tools.
+
+3.Locate the Bearer Token
+
+  In the left-hand menu, find the "Storage" section and select "Cookies".
+  Choose the domain corresponding to Arena Social (e.g., social.arena). 
+  Look through the cookies for a key like Authorization or Bearer.
+
+4.Copy the Token
+  Copy the token value directly from the cookies or local storage.
+  The token should begin with Bearer.
+  
+5.Securely Store the Token
+  Save the token in your /backend/.env file or another secure location.
 
   Ensure you have the following installed:
 
