@@ -1,6 +1,6 @@
 
 
-  <p style="font-size:18px; font-weight:bold">Bounty9000</p>
+  <p style="font-size:18px; font-weight:bold">AvaAi Agent</p>
 
   Frontend: A React application for building a responsive and interactive user interface.
   Backend: A Node.js application with a MySQL database for handling server-side logic and API requests.
