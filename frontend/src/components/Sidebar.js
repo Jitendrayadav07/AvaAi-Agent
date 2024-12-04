@@ -7,7 +7,7 @@ const Sidebar = () => {
   const [activeItem, setActiveItem] = useState("avaai");
 
   const menuItems = [
-    { id: "avaai", icon: RiSwordLine, label: "AvaAi", path: "/avaai" },
+    { id: "avaai", icon: RiSwordLine, label: "AvaAi Agent", path: "/avaai" },
     { id: "market", icon: BiStore, label: "Trade", path: "/market" },
   ];
 
@@ -15,7 +15,7 @@ const Sidebar = () => {
     <div className="fixed left-0 h-screen w-64 bg-gray-900 text-white shadow-lg">
       <div className="flex items-center justify-center h-20 border-b border-gray-800">
         <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
-          CryptoVerse
+          Ava AI
         </h1>
       </div>
       <nav className="mt-8">

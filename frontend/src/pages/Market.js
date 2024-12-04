@@ -73,9 +73,9 @@ const Market = () => {
   const fetchTransactionData = async () => {
     try {
       await axios
-        .get("https://pharmaalabs.com/v2/get-all-orders")
+        .get("http://localhost:3003/v2/get-all-orders")
         .then((response) => {
-          setTransactionData(response.data);
+          setTransactionData(response.data.result);
         });
     } catch (error) {
       console.error("Error fetching transaction data:", error);
@@ -234,16 +234,16 @@ const Market = () => {
                 <table className="bg-gray-800 w-full rounded-lg overflow-hidden">
                   <thead>
                     <tr className="bg-gray-700 text-white whitespace-nowrap">
-                      <th className="py-2 px-4 sticky left-0 z-20 bg-gray-700">
+                      <th className="py-2 px-4 sticky left-0 z-20 bg-gray-700 text-center">
                         Order ID
                       </th>
-                      <th className="py-2 px-4">Side</th>
-                      <th className="py-2 px-4">Size</th>
-                      <th className="py-2 px-4">Market</th>
-                      <th className="py-2 px-4">Filled Size</th>
-                      <th className="py-2 px-4">Filled Cost</th>
-                      <th className="py-2 px-4">Fee</th>
-                      <th className="py-2 px-4">Created At</th>
+                      <th className="py-2 px-4 text-center">Side</th>
+                      <th className="py-2 px-4 text-center">Size</th>
+                      <th className="py-2 px-4 text-center">Market</th>
+                      <th className="py-2 px-4 text-center">Filled Size</th>
+                      <th className="py-2 px-4 text-center">Filled Cost</th>
+                      <th className="py-2 px-4 text-center">Fee</th>
+                      <th className="py-2 px-4 text-center">Created At</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -252,11 +252,11 @@ const Market = () => {
                         key={transaction.id}
                         className="bg-gray-800 text-white border-b border-gray-700 whitespace-nowrap"
                       >
-                        <td className="py-2 px-4 sticky left-0 z-2 bg-gray-800">
+                        <td className="py-2 px-4 sticky left-0 z-2 bg-gray-800 text-center">
                           {formatHashString(transaction.orderId)}
                         </td>
                         <td
-                          className={`my-1 px-3 text-md font-semibold rounded-lg ${
+                          className={`my-1 px-3 text-md font-semibold rounded-lg text-center ${
                             transaction.side === "buy"
                               ? " text-green-600"
                               : " text-red-600"
@@ -264,12 +264,12 @@ const Market = () => {
                         >
                           {transaction.side}
                         </td>
-                        <td className="py-2 px-4">{transaction.size}</td>
-                        <td className="py-2 px-4">{transaction.market}</td>
-                        <td className="py-2 px-4">{transaction.filledSize}</td>
-                        <td className="py-2 px-4">{transaction.filledCost}</td>
-                        <td className="py-2 px-4">{transaction.fee}</td>
-                        <td className="py-2 px-4">
+                        <td className="py-2 px-4 text-center">{transaction.size}</td>
+                        <td className="py-2 px-4 text-center">{transaction.market}</td>
+                        <td className="py-2 px-4 text-center">{transaction.filledSize}</td>
+                        <td className="py-2 px-4 text-center">{transaction.filledCost}</td>
+                        <td className="py-2 px-4 text-center">{transaction.fee}</td>
+                        <td className="py-2 px-4 text-center">
                           {formatTimestamp(transaction.createdAt)}
                         </td>
                       </tr>

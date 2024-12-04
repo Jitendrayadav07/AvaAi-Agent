@@ -56,6 +56,14 @@ To obtain a Bearer Token for Arena Social, follow these steps:
 5.Securely Store the Token
   Save the token in your /backend/.env file or another secure location.
 
+  ## ** OPEN AI API key to get the bot running **
+
+1. Go to platform.openai.com
+2. API keys > Create new secret key
+3. cd ai-agent/.env - paste your api key
+
+Note - check the credits in your account if they credits are 0, will have to purchase 5$ of credits for bot to run.
+
    ## **Ensure you have the following installed:**
 
   Node.js (version >= 18)
@@ -79,9 +87,11 @@ To obtain a Bearer Token for Arena Social, follow these steps:
   3. Setup the backend:
     cd backend  
     npm install  
-    npm start
+    node index.js
 
     Runs on port 3003
+
+    Note - create a database name avax-house
 
 
   4. Setup the AI-Agent:
@@ -94,7 +104,10 @@ To obtain a Bearer Token for Arena Social, follow these steps:
 
     Runs on port 5000
 
-  Note - Make sure to keep all the projects running parallely
+  Note - 
+  1. Make sure to keep all the projects running parallely
+  2. Have a open ai key
+  3. Add the required keys in all projects .env file for the project to execute.
 
   Usage
   Start the frontend, backend, and AI-agent.
