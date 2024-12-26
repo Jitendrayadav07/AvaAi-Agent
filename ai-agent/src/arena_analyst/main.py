@@ -51,7 +51,7 @@ class PoemFlow(Flow[PoemState]):
         else:
             data["sentiment"] = "Extreme Greed"
           
-        url = "https://pharmaalabs.com/v1/arena-post"
+        url = "https://pharmaalabs.com/v1/send-data"
         headers = {
             "Content-Type": "application/json",
         }
