@@ -36,8 +36,7 @@ arena_volume_analyst_task:
     amount column consist of the quantity of tokens swapped, added or removed in the pool.
     timestamp column consist of the time of the transaction.
     You need to analyse the data 
-    - check past 24 hours data, then check the last 6 hours data,
-    - analyse what changed in the trading behaviour in past 6 hours which made you come towards your decision.
+    - analyse what changed in the trading behaviour happened recently which made you come towards your decision.
     based on these you need to give the perfect unbiased opinion seeing the amount, function_call and timestamp,
     and inform what is the current trend of the market that the users are following.
   expected_output: >
@@ -48,6 +47,7 @@ arena_volume_analyst_task:
       - score : given by arena_social_analyst
       - most_talked_crypto : given by arena_social_analyst
       - arena_social_analyst_reasoning : given by arena_social_analyst
+    Make sure you get the data from database for the accurate analysis.
   agent: arena_volume_analyst
 
 
