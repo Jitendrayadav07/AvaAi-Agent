@@ -6,7 +6,7 @@ from pydantic import BaseModel
 from crewai.flow.flow import Flow, listen, start
 
 from .crews.poem_crew.poem_crew import PoemCrew
-from .crews.avax_crew.avax_crew import AvaxCrew
+# from .crews.avax_crew.avax_crew import AvaxCrew
 import json
 import requests
 
@@ -67,21 +67,22 @@ class PoemFlow(Flow[PoemState]):
                     "fileType": "image",
                     "size": 52780
                 }
-            ]
+            ],
+            "score": data["score"]
         }
 
-        if data["score"] < 25:
-            selected_url = self.urls["extreme_fear"]
-        elif 25 <= data["score"] < 50:
-            selected_url = self.urls["fear"]
-        elif 50 <= data["score"] < 75:
-            selected_url = self.urls["greed"]
-        else:
-            selected_url = self.urls["extreme_greed"]
+        # if data["score"] < 25:
+        #     selected_url = self.urls["extreme_fear"]
+        # elif 25 <= data["score"] < 50:
+        #     selected_url = self.urls["fear"]
+        # elif 50 <= data["score"] < 75:
+        #     selected_url = self.urls["greed"]
+        # else:
+        #     selected_url = self.urls["extreme_greed"]
 
         # Assign the selected URL to both url and previewUrl
-        payload['files'][0]['url'] = selected_url
-        payload['files'][0]['previewUrl'] = selected_url
+        payload['files'][0]['url'] = "selected_url"
+        payload['files'][0]['previewUrl'] = "selected_url"
 
         try:
             print("try")
